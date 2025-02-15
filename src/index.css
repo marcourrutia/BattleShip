@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -30,11 +32,6 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -65,4 +62,29 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 5px;
+}
+
+.cell {
+  border: 1px solid #c8c8c8;
+  width: 50px;
+  height: 50px;
+  place-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cell:hover {
+  background-color: #41ff079c;
+}
+
+.cell:active {
+  transition: 0.1s;
+  transform: scale(0.95);
 }
