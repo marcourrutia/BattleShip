@@ -7,6 +7,7 @@ import {
   createShips,
   positionShips,
 } from "./utils/gameLogic";
+import { RestartButton } from "./components/RestartButton";
 
 function App() {
   const [turn, setTurn] = useState(TURNS.Player);
@@ -14,6 +15,7 @@ function App() {
   const [computerHit, setComputerHit] = useState([]);
   const [playerPosition, setPlayerPosition] = useState([]);
   const [computerPosition, setComputerPosition] = useState([]);
+  const [restart, setRestart] = useState(false);
 
   const updateBoard = (position) => {
     if (turn === TURNS.Player) {
@@ -34,7 +36,7 @@ function App() {
     const computerShip = positionShips(createShips());
     setPlayerPosition(playerShip.flat());
     setComputerPosition(computerShip.flat());
-  }, []);
+  }, [restart]);
 
   useEffect(() => {
     if (turn === TURNS.Computer) {
@@ -57,7 +59,7 @@ function App() {
         Batalla Naval
       </h1>
       {playerPosition.length > 0 && computerPosition.length > 0 ? (
-        <main className="flex flex-col lg:flex-row gap-20 w-fit place-items-center">
+        <main className="flex flex-col lg:flex-row gap-5 w-fit place-items-center">
           <div className="flex flex-col">
             <h2 className="text-1xl 2xl:text-2xl">Computadora</h2>
             <h1 className="text-2xl 2xl:text-4xl p-5">Campo aliado</h1>
@@ -106,6 +108,14 @@ function App() {
               </section>
             </div>
           </div>
+          <RestartButton
+            restart={restart}
+            setRestart={setRestart}
+            setPlayerPosition={setPlayerPosition}
+            setComputerPosition={setComputerPosition}
+            setPlayerHit={setPlayerHit}
+            setComputerHit={setComputerHit}
+          />
           <div className="flex flex-col">
             <h2 className="text-1xl 2xl:text-2xl">Jugador</h2>
             <h1 className="text-2xl 2xl:text-4xl p-5">Campo rival</h1>

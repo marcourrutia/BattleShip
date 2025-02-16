@@ -28,6 +28,7 @@ export const createShips = () => {
   return ships;
 };
 
+//funcion para posicionar los barcos de forma aleatoria
 export const positionShips = (shipsArray) => {
   let availablePositions = COLUMNS.flatMap((col) =>
     ROWS.map((row) => `${col}${row}`)
