@@ -121,6 +121,11 @@ button:focus-visible {
   transform: scale(0.95);
 }
 
+.is-ship {
+  border: 1px solid rgb(47, 187, 0);
+  background-color: rgba(20, 201, 20, 0.315);
+}
+
 .clicked {
   background-color: rgba(44, 96, 175, 0.514);
   pointer-events: none;

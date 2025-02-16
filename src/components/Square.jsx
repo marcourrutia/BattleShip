@@ -19,6 +19,12 @@ export const Square = ({
   };
 
   useEffect(() => {
+    if (shipsPosition) {
+      if (shipsPosition.includes(position)) setIsShip(true);
+    }
+  }, []);
+
+  useEffect(() => {
     if (computerHit) {
       if (computerHit.includes(position)) {
         setClicked(true);
@@ -30,10 +36,10 @@ export const Square = ({
     <div
       className={`size-[35px] 2xl:size-[50px] ${
         turn === "player" ? "cell" : "cell-computer"
-      } ${clicked ? "clicked" : ""}`}
+      } ${clicked ? "clicked" : ""} ${
+        id === "player" && isShip ? "is-ship" : ""
+      }`}
       onClick={turn === "player" && !clicked ? handleClick : null}
-    >
-      {isShip ? "a" : ""}
-    </div>
+    ></div>
   );
 };
