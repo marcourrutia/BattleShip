@@ -11,26 +11,15 @@ import { RestartButton } from "./components/RestartButton";
 
 function App() {
   const [turn, setTurn] = useState(TURNS.Player);
-  const [playerHit, setPlayerHit] = useState([]);
-  const [computerHit, setComputerHit] = useState([]);
+  const [playerShot, setPlayerShot] = useState([]);
+  const [computerShot, setComputerShot] = useState([]);
   const [playerPosition, setPlayerPosition] = useState([]);
   const [computerPosition, setComputerPosition] = useState([]);
+  const [playerHit, setPlayerHit] = useState([]);
+  const [computerHit, setComputerHit] = useState([]);
   const [restart, setRestart] = useState(false);
 
-  const updateBoard = (position) => {
-    if (turn === TURNS.Player) {
-      if (!playerHit.includes(position)) {
-        setPlayerHit((prev) => [...prev, position]);
-        setTurn(TURNS.Computer);
-      }
-    } else {
-      if (!computerHit.includes(position)) {
-        setComputerHit((prev) => [...prev, position]);
-        setTurn(TURNS.Player);
-      }
-    }
-  };
-
+  //posicionamiento de barcos aleatorio
   useEffect(() => {
     const playerShip = positionShips(createShips());
     const computerShip = positionShips(createShips());
@@ -38,20 +27,35 @@ function App() {
     setComputerPosition(computerShip.flat());
   }, [restart]);
 
+  //logíca del turno del player, al hacer click sobre un Square
+  const updateBoard = (position) => {
+    if (turn === TURNS.Player) {
+      if (!playerShot.includes(position)) {
+        setPlayerShot((prev) => [...prev, position]);
+      }
+      if (computerPosition.includes(position)) {
+        setPlayerHit((prev) => [...prev, position]);
+      }
+      setTurn(TURNS.Computer);
+    }
+  };
+
+  //aquí la lógica del turno de la computadora
   useEffect(() => {
     if (turn === TURNS.Computer) {
       setTimeout(() => {
-        const position = getRandomPosition(computerHit);
-
+        const position = getRandomPosition(computerShot);
         if (position) {
-          setComputerHit((prev) => [...prev, position]);
+          setComputerShot((prev) => [...prev, position]);
           setTurn(TURNS.Player);
+          if (playerPosition.includes(position))
+            setComputerHit((prev) => [...prev, position]);
         } else {
           console.log("no quedan posiciones");
         }
       }, 1000);
     }
-  }, [turn, computerHit]);
+  }, [turn, computerShot]);
 
   return (
     <main className="w-fit">
@@ -99,9 +103,9 @@ function App() {
                       key={`${col}${row}`}
                       id="player"
                       position={`${col}${row}`}
-                      updateBoard={updateBoard}
-                      computerHit={computerHit}
+                      computerShot={computerShot}
                       shipsPosition={playerPosition}
+                      computerHit={computerHit}
                     />
                   ))
                 )}
@@ -113,8 +117,10 @@ function App() {
             setRestart={setRestart}
             setPlayerPosition={setPlayerPosition}
             setComputerPosition={setComputerPosition}
-            setPlayerHit={setPlayerHit}
+            setPlayerShot={setPlayerShot}
+            setComputerShot={setComputerShot}
             setComputerHit={setComputerHit}
+            setPlayerHit={setPlayerHit}
           />
           <div className="flex flex-col">
             <h2 className="text-1xl 2xl:text-2xl">Jugador</h2>
@@ -158,6 +164,7 @@ function App() {
                       turn={turn}
                       shipsPosition={computerPosition}
                       updateBoard={updateBoard}
+                      playerHit={playerHit}
                     />
                   ))
                 )}

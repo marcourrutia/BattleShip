@@ -5,11 +5,14 @@ export const Square = ({
   position,
   turn,
   updateBoard,
-  computerHit,
+  computerShot,
   shipsPosition,
+  computerHit,
+  playerHit,
 }) => {
   const [clicked, setClicked] = useState(false);
   const [isShip, setIsShip] = useState(false);
+  const [hit, setHit] = useState(false);
 
   const handleClick = () => {
     if (!clicked) {
@@ -19,18 +22,25 @@ export const Square = ({
   };
 
   useEffect(() => {
+    if (playerHit) {
+      if (playerHit.includes(position)) {
+        setHit(true);
+      }
+    }
+  }, [playerHit]);
+
+  useEffect(() => {
     if (shipsPosition) {
       if (shipsPosition.includes(position)) setIsShip(true);
     }
   }, []);
 
   useEffect(() => {
-    if (computerHit) {
-      if (computerHit.includes(position)) {
-        setClicked(true);
-      }
+    if (computerShot) {
+      if (computerShot.includes(position)) setClicked(true);
+      if (computerHit.includes(position)) setHit(true);
     }
-  }, [computerHit]);
+  }, [computerShot]);
 
   return (
     <div
@@ -38,8 +48,10 @@ export const Square = ({
         turn === "player" ? "cell" : "cell-computer"
       } ${clicked ? "clicked" : ""} ${
         id === "player" && isShip ? "is-ship" : ""
-      }`}
+      } ${hit ? "hit" : ""}`}
       onClick={turn === "player" && !clicked ? handleClick : null}
-    ></div>
+    >
+      {hit && <span className="text-2xl">💥</span>}
+    </div>
   );
 };

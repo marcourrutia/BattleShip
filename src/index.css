@@ -111,3 +111,8 @@ body {
   background-color: rgba(44, 96, 175, 0.514);
   pointer-events: none;
 }
+
+.hit {
+  background-color: rgba(255, 0, 0, 0.555);
+  border: 1px solid red;
+}

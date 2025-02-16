@@ -1,9 +1,9 @@
 import { COLUMNS, ROWS, SHIPS, ALLPOSITIONS } from "./constants";
 
 //generador de posición aleatoria para el turno de la computadora
-export const getRandomPosition = (computerHit) => {
+export const getRandomPosition = (computerShot) => {
   const availablePositions = ALLPOSITIONS.filter(
-    (pos) => !computerHit.includes(pos)
+    (pos) => !computerShot.includes(pos)
   );
   if (availablePositions.length === 0) return null;
   return availablePositions[
