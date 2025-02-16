@@ -64,11 +64,57 @@ button:focus-visible {
   }
 }
 
+.board-container {
+  display: grid;
+  grid-template-columns: 50px 575px;
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
   gap: 5px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.header {
+  display: flex;
+  column-gap: 5px;
+  padding-inline: 15px;
+  grid-column: 2 / 3;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  padding-block: 15px;
+  grid-row: 2 / 3;
+}
+
+.header-cell {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.column-cell {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 5px;
+}
+
+.cell-computer {
+  border: 1px solid #c8c8c8;
+  width: 50px;
+  height: 50px;
+  place-content: center;
 }
 
 .cell {
@@ -81,10 +127,15 @@ button:focus-visible {
 }
 
 .cell:hover {
-  background-color: #41ff079c;
+  background-color: #593bdf9c;
 }
 
 .cell:active {
   transition: 0.1s;
   transform: scale(0.95);
+}
+
+.clicked {
+  background-color: rgba(0, 17, 255, 0.514);
+  pointer-events: none;
 }
