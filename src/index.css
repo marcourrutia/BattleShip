@@ -64,12 +64,8 @@ button:focus-visible {
   }
 }
 
-.board-container {
-  display: grid;
-  grid-template-columns: 50px 575px;
-}
-
 .board {
+  width: fit-content;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
@@ -94,16 +90,12 @@ button:focus-visible {
 }
 
 .header-cell {
-  width: 50px;
-  height: 50px;
   display: flex;
   justify-content: center;
   align-items: end;
 }
 
 .column-cell {
-  width: 50px;
-  height: 50px;
   display: flex;
   align-items: center;
   justify-content: end;
@@ -112,15 +104,11 @@ button:focus-visible {
 
 .cell-computer {
   border: 1px solid #c8c8c8;
-  width: 50px;
-  height: 50px;
   place-content: center;
 }
 
 .cell {
   border: 1px solid #c8c8c8;
-  width: 50px;
-  height: 50px;
   place-content: center;
   cursor: pointer;
   transition: 0.3s;
@@ -136,6 +124,6 @@ button:focus-visible {
 }
 
 .clicked {
-  background-color: rgba(0, 17, 255, 0.514);
+  background-color: rgba(44, 96, 175, 0.514);
   pointer-events: none;
 }

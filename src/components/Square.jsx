@@ -20,9 +20,9 @@ export const Square = ({ position, turn, updateBoard, computerHit }) => {
 
   return (
     <div
-      className={`${turn === "player" ? "cell" : "cell-computer"} ${
-        clicked ? "clicked" : ""
-      }`}
+      className={`size-[35px] 2xl:size-[50px] ${
+        turn === "player" ? "cell" : "cell-computer"
+      } ${clicked ? "clicked" : ""}`}
       onClick={turn === "player" && !clicked ? handleClick : null}
     ></div>
   );

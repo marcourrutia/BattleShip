@@ -27,7 +27,6 @@ function App() {
     if (turn === TURNS.Computer) {
       setTimeout(() => {
         const position = getRandomPosition(computerHit);
-        console.log("posicioon", position);
 
         if (position) {
           setComputerHit((prev) => [...prev, position]);
@@ -40,17 +39,22 @@ function App() {
   }, [turn, computerHit]);
 
   return (
-    <>
-      <h1 className="text-6xl p-7 text-white/90">Batalla Naval</h1>
-      <main className="flex gap-10">
+    <main className="w-fit">
+      <h1 className="text-4xl 2xl:text-6xl pb-2 2xl:p-7 text-white/90">
+        Batalla Naval
+      </h1>
+      <main className="flex flex-col lg:flex-row gap-20 w-fit place-items-center">
         <div className="flex flex-col">
-          <h2 className="text-2xl">Computadora</h2>
-          <h1 className="text-4xl p-5">Campo aliado</h1>
-          <div className="board-container">
+          <h2 className="text-1xl 2xl:text-2xl">Computadora</h2>
+          <h1 className="text-2xl 2xl:text-4xl p-5">Campo aliado</h1>
+          <div className="grid grid-cols-[40px_425px] 2xl:grid-cols-[50px_575px]">
             <div className="header">
               {COLUMNS.map((col, index) => {
                 return (
-                  <div key={index} className="header-cell">
+                  <div
+                    key={index}
+                    className="header-cell size-[35px] 2xl:size-[50px]"
+                  >
                     {col}
                   </div>
                 );
@@ -59,7 +63,10 @@ function App() {
             <div className="column">
               {ROWS.map((row, index) => {
                 return (
-                  <div key={index} className="column-cell">
+                  <div
+                    key={index}
+                    className="column-cell size-[35px] 2xl:size-[50px]"
+                  >
                     {row}
                   </div>
                 );
@@ -84,13 +91,16 @@ function App() {
           </div>
         </div>
         <div className="flex flex-col">
-          <h2 className="text-2xl">Jugador</h2>
-          <h1 className="text-4xl p-5">Campo rival</h1>
-          <div className="board-container">
+          <h2 className="text-1xl 2xl:text-2xl">Jugador</h2>
+          <h1 className="text-2xl 2xl:text-4xl p-5">Campo rival</h1>
+          <div className="grid grid-cols-[40px_425px] 2xl:grid-cols-[50px_575px]">
             <div className="header">
               {COLUMNS.map((col, index) => {
                 return (
-                  <div key={index} className="header-cell">
+                  <div
+                    key={index}
+                    className="header-cell size-[35px] 2xl:size-[50px]"
+                  >
                     {col}
                   </div>
                 );
@@ -99,7 +109,10 @@ function App() {
             <div className="column">
               {ROWS.map((row, index) => {
                 return (
-                  <div key={index} className="column-cell">
+                  <div
+                    key={index}
+                    className="column-cell size-[35px] 2xl:size-[50px]"
+                  >
                     {row}
                   </div>
                 );
@@ -124,7 +137,7 @@ function App() {
           </div>
         </div>
       </main>
-    </>
+    </main>
   );
 }
 
