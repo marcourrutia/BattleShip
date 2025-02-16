@@ -21,7 +21,7 @@ export const RestartButton = ({
   return (
     <button
       type="button"
-      className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 cursor-pointer active:scale-90 self-start"
+      className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 cursor-pointer active:scale-90 lg:mt-10 lg:self-start"
       onClick={handleClick}
     >
       <svg

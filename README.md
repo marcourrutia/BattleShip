@@ -1,8 +1,24 @@
-# React + Vite
+# 🚢 Batalla Naval - By devMarco
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenido a **Batalla Naval**, un juego clásico desarrollado con **React**. Dispara a los barcos del enemigo y hunde su flota antes de que el hunda la tuya. 🎯🔥
 
-Currently, two official plugins are available:
+## 🛠 Tecnologías utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Vite ⚡
+- React ⚛️
+- JavaScript
+- CSS / TailwindCSS
+
+## 📦 Instalación
+
+Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
+
+### 1️⃣ Clonar el repositorio
+
+```bash
+git clone https://github.com/tu-usuario/batalla-naval.git
+cd batalla-naval
+
+Asegurate de tener Node.js instalado. Luego ejecuta:
+npm install
+```
