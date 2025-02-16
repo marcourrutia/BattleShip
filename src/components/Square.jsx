@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 
-export const Square = ({ position, turn, updateBoard, computerHit }) => {
+export const Square = ({
+  id,
+  position,
+  turn,
+  updateBoard,
+  computerHit,
+  shipsPosition,
+}) => {
   const [clicked, setClicked] = useState(false);
+  const [isShip, setIsShip] = useState(false);
 
   const handleClick = () => {
     if (!clicked) {
@@ -24,6 +32,8 @@ export const Square = ({ position, turn, updateBoard, computerHit }) => {
         turn === "player" ? "cell" : "cell-computer"
       } ${clicked ? "clicked" : ""}`}
       onClick={turn === "player" && !clicked ? handleClick : null}
-    ></div>
+    >
+      {isShip ? "a" : ""}
+    </div>
   );
 };

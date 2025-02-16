@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { Square } from "./components/Square";
 import { TURNS, COLUMNS, ROWS, SHIPS } from "./utils/constants";
-import { getRandomPosition } from "./utils/gameLogic";
+import {
+  getRandomPosition,
+  createShips,
+  positionShips,
+} from "./utils/gameLogic";
 
 function App() {
   const [turn, setTurn] = useState(TURNS.Player);
   const [playerHit, setPlayerHit] = useState([]);
   const [computerHit, setComputerHit] = useState([]);
+  const [shipsPosition, setShipsPosition] = useState([]);
 
   const updateBoard = (position) => {
     if (turn === TURNS.Player) {
@@ -22,6 +27,11 @@ function App() {
       }
     }
   };
+
+  useEffect(() => {
+    const placedShip = positionShips(createShips());
+    setShipsPosition(placedShip.flat());
+  }, []);
 
   useEffect(() => {
     if (turn === TURNS.Computer) {
@@ -80,10 +90,12 @@ function App() {
               {ROWS.map((row, rowIndex) =>
                 COLUMNS.map((col, colIndex) => (
                   <Square
-                    key={`${rowIndex}-${colIndex}`}
+                    key={`${col}${row}`}
+                    id="player"
                     position={`${col}${row}`}
                     updateBoard={updateBoard}
                     computerHit={computerHit}
+                    shipsPosition={shipsPosition}
                   />
                 ))
               )}
@@ -126,7 +138,8 @@ function App() {
               {ROWS.map((row, rowIndex) =>
                 COLUMNS.map((col, colIndex) => (
                   <Square
-                    key={`${rowIndex}-${colIndex}`}
+                    key={`${col}${row}`}
+                    id="computer"
                     position={`${col}${row}`}
                     turn={turn}
                     updateBoard={updateBoard}
