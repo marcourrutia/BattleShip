@@ -1,22 +1,22 @@
 export const RestartButton = ({
-  restart,
-  setRestart,
-  setPlayerPosition,
-  setComputerPosition,
   setPlayerShot,
   setComputerShot,
+  setPlayerPosition,
+  setComputerPosition,
   setPlayerHit,
   setComputerHit,
   setHaveWinner,
+  restart,
+  setRestart,
 }) => {
   const handleClick = () => {
+    setHaveWinner(null);
     setPlayerPosition([]);
     setComputerPosition([]);
     setComputerShot([]);
     setPlayerShot([]);
     setPlayerHit([]);
     setComputerHit([]);
-    setHaveWinner(false);
     setRestart(!restart);
   };
 

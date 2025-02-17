@@ -100,6 +100,7 @@ export const positionShips = (shipsArray) => {
 //función para detectar si hay ganador
 export const isWinner = (shipPosition, hit) => {
   if (shipPosition.length !== hit.length) return false;
+  if (shipPosition.length < 10 && hit < 10) return false;
   return shipPosition
     .sort()
     .every((value, index) => value === hit.sort()[index]);

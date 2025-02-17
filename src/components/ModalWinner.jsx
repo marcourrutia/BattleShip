@@ -1,17 +1,13 @@
-import { RestartButton } from "./RestartButton";
-
 export const ModalWinner = ({ winner, restart }) => {
   return (
     <div
-      id="popup-modal"
-      tabIndex="-1"
-      className="fixed z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-black/50"
+      className="fixed z-50 flex justify-center items-center w-full md:inset-0 h-screen bg-black/50"
     >
       <div className="relative p-4 w-full max-w-md max-h-full">
         <div className="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
           <div className="p-4 md:p-5 text-center">
             <svg
-              className="size-10 2xl:size-15 place-self-center"
+              className="size-10 2xl:size-15 place-self-center mb-5"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="none"
