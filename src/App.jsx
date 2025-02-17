@@ -6,8 +6,10 @@ import {
   getRandomPosition,
   createShips,
   positionShips,
+  isWinner,
 } from "./utils/gameLogic";
 import { RestartButton } from "./components/RestartButton";
+import { ModalWinner } from "./components/ModalWinner";
 
 function App() {
   const [turn, setTurn] = useState(TURNS.Player);
@@ -17,10 +19,12 @@ function App() {
   const [computerPosition, setComputerPosition] = useState([]);
   const [playerHit, setPlayerHit] = useState([]);
   const [computerHit, setComputerHit] = useState([]);
+  const [haveWinner, setHaveWinner] = useState(false);
   const [restart, setRestart] = useState(false);
 
   //posicionamiento de barcos aleatorio
   useEffect(() => {
+    console.log(haveWinner);
     const playerShip = positionShips(createShips());
     const computerShip = positionShips(createShips());
     setPlayerPosition(playerShip.flat());
@@ -36,13 +40,16 @@ function App() {
       if (computerPosition.includes(position)) {
         setPlayerHit((prev) => [...prev, position]);
       }
+      console.log(isWinner(computerPosition, playerHit));
       setTurn(TURNS.Computer);
     }
   };
 
-  //aquí la lógica del turno de la computadora
+  //aquí la lógica del turno de la computadora y comprobar si hay ganador
   useEffect(() => {
     if (turn === TURNS.Computer) {
+      const winner = isWinner(playerPosition, computerHit);
+      if (winner) setHaveWinner("Computadora");
       setTimeout(() => {
         const position = getRandomPosition(computerShot);
         if (position) {
@@ -54,11 +61,35 @@ function App() {
           console.log("no quedan posiciones");
         }
       }, 1000);
+    } else {
+      const winner = isWinner(computerPosition, playerHit);
+      if (winner) setHaveWinner("Jugador");
     }
+    console.log("have winner: ", haveWinner);
   }, [turn, computerShot]);
 
   return (
     <main className="w-fit">
+      {haveWinner === true ? (
+        <ModalWinner
+          winner={haveWinner}
+          restart={
+            <RestartButton
+              restart={restart}
+              setRestart={setRestart}
+              setPlayerPosition={setPlayerPosition}
+              setComputerPosition={setComputerPosition}
+              setPlayerShot={setPlayerShot}
+              setComputerShot={setComputerShot}
+              setComputerHit={setComputerHit}
+              setPlayerHit={setPlayerHit}
+              setHaveWinner={setHaveWinner}
+            />
+          }
+        />
+      ) : (
+        ""
+      )}
       <h1 className="text-4xl 2xl:text-6xl pb-2 2xl:p-7 text-white/90">
         Batalla Naval
       </h1>
@@ -121,6 +152,7 @@ function App() {
             setComputerShot={setComputerShot}
             setComputerHit={setComputerHit}
             setPlayerHit={setPlayerHit}
+            setHaveWinner={setHaveWinner}
           />
           <div className="flex flex-col">
             <h2 className="text-1xl 2xl:text-2xl">Jugador</h2>

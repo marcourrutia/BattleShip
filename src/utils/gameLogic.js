@@ -40,7 +40,6 @@ export const positionShips = (shipsArray) => {
     positions.forEach((pos) => {
       const colIndex = COLUMNS.indexOf(pos[0]);
       const rowIndex = ROWS.indexOf(Number(pos.slice(1)));
-
       for (let i = colIndex - 1; i <= colIndex + 1; i++) {
         for (let j = rowIndex - 1; j <= rowIndex + 1; j++) {
           if (i >= 0 && i < COLUMNS.length && j >= 0 && j < ROWS.length) {
@@ -96,4 +95,12 @@ export const positionShips = (shipsArray) => {
   });
 
   return positionedShips;
+};
+
+//función para detectar si hay ganador
+export const isWinner = (shipPosition, hit) => {
+  if (shipPosition.length !== hit.length) return false;
+  return shipPosition
+    .sort()
+    .every((value, index) => value === hit.sort()[index]);
 };
