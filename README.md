@@ -50,10 +50,11 @@ Gana hundiendo todos los barcos rivales.
 ### La flota
 
 Tu flota y la del rival se componen de:
-🚢 Acorazado: 1 unidad, tamaño 4.
-🛥️ Destructor: 2 unidades, tamaño 3.
-🚤 Cañonera: 3 unidades, tamaño 2.
-🛶 Lancha: 4 unidades, tamaño 1.
+
+- 🚢 Acorazado: 1 unidad, tamaño 4.
+- 🛥️ Destructor: 2 unidades, tamaño 3.
+- 🚤 Cañonera: 3 unidades, tamaño 2.
+- 🛶 Lancha: 4 unidades, tamaño 1.
 
 ### 🎮 ¡Diviértete jugando!
 
