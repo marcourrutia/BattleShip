@@ -47,10 +47,6 @@ function App() {
   //aquí la lógica del turno de la computadora y comprobar si hay ganador
   useEffect(() => {
     if (turn === TURNS.Computer) {
-      const winner = isWinner(playerPosition, computerHit);
-      if (winner) {
-        setHaveWinner("Computadora");
-      }
       setTimeout(() => {
         const position = getRandomPosition(computerShot);
         if (position) {
@@ -64,15 +60,27 @@ function App() {
           console.log("no quedan posiciones");
         }
       }, 1000);
-    } else {
-      console.log("winner: ", haveWinner);
-      console.log("player: ", restart);
-      const winner = isWinner(computerPosition, playerHit);
-      if (winner) {
-        setHaveWinner("Jugador");
-      }
     }
   }, [turn, computerShot]);
+
+  //comprueba si hay ganador
+  useEffect(() => {
+    if (playerHit.length > 18 || computerHit.length > 18) {
+      if (turn === TURNS.Computer) {
+        const winner = isWinner(playerPosition, computerHit);
+        console.log("winner compu?: ", winner);
+        if (winner) {
+          setHaveWinner("Computadora");
+        }
+      } else {
+        const winner = isWinner(computerPosition, playerHit);
+        console.log("winner player?: ", winner);
+        if (winner) {
+          setHaveWinner("Jugador");
+        }
+      }
+    }
+  }, [turn, playerHit, computerHit]);
 
   return (
     <main className="w-fit pb-10">
